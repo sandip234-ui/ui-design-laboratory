@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { IconArrowLeft, IconArrowRight, IconCheck, IconSparkles } from './Icons';
+import { StyleContext } from './StyleContext';
+import { STYLES } from '../data/stylesData';
 
-export const SectionHeader = ({ styleData, prevStyle, nextStyle, onNavigate }) => {
+export const SectionHeader = ({ styleData, prevStyle, nextStyle, onNavigate, totalStyles }) => {
   const [copied, setCopied] = useState(false);
   const isLight = Boolean(styleData.isLight);
+  const totalCount = totalStyles || STYLES.length;
 
   const handleCopyTokens = () => {
-    const text = `Style: ${styleData.name} (${styleData.number}/29)\nFormula: ${styleData.formula}\nExplanation: ${styleData.explanation}\nCharacteristics: ${styleData.characteristics.join(', ')}\nEra: ${styleData.era}\nCategory: ${styleData.category}`;
+    const text = `Style: ${styleData.name} (${styleData.number}/${totalCount})\nFormula: ${styleData.formula}\nExplanation: ${styleData.explanation || styleData.shortDescription}\nCharacteristics: ${(styleData.characteristics || []).join(', ')}\nEra: ${styleData.era}\nCategory: ${styleData.category}`;
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -43,7 +46,7 @@ export const SectionHeader = ({ styleData, prevStyle, nextStyle, onNavigate }) =
       {/* Top Utility Row: Number Badge, Meta & Navigation */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
         <div className="flex items-center gap-2.5">
-          {/* Main 01 / 29 Number Badge */}
+          {/* Main 01 / 51 Number Badge */}
           <span
             className={`font-mono text-xs sm:text-sm uppercase tracking-widest font-black px-3 py-1 rounded-lg ${
               isLight
@@ -51,7 +54,7 @@ export const SectionHeader = ({ styleData, prevStyle, nextStyle, onNavigate }) =
                 : 'bg-white/10 text-white border border-white/20'
             }`}
           >
-            {styleData.number} / 29
+            {styleData.number} / {totalCount}
           </span>
 
           {/* Category Tag */}
@@ -173,7 +176,7 @@ export const SectionHeader = ({ styleData, prevStyle, nextStyle, onNavigate }) =
 
       {/* Characteristic Badges */}
       <div className="mt-4 flex flex-wrap gap-2">
-        {styleData.characteristics.map((char, index) => (
+        {styleData.characteristics && styleData.characteristics.map((char, index) => (
           <span
             key={index}
             className={`inline-flex items-center text-xs px-2.5 py-1 rounded-md font-semibold ${
@@ -190,6 +193,9 @@ export const SectionHeader = ({ styleData, prevStyle, nextStyle, onNavigate }) =
           </span>
         ))}
       </div>
+
+      {/* Rich Educational Style Context */}
+      <StyleContext styleData={styleData} isLight={isLight} />
     </header>
   );
 };

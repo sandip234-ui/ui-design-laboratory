@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconSparkles, IconLayers, IconActivity, IconArrowRight } from './Icons';
 
-export const Hero = ({ onExploreClick, stylesCount = 29 }) => {
+export const Hero = ({ onExploreClick, stylesCount = 51 }) => {
   return (
     <section className="relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-28 border-b border-white/10">
       {/* Background Ambient Glow */}
@@ -21,7 +21,7 @@ export const Hero = ({ onExploreClick, stylesCount = 29 }) => {
 
         {/* Subtitle */}
         <p className="mt-4 text-xl sm:text-2xl md:text-3xl font-medium text-transparent bg-clip-text bg-linear-to-r from-slate-100 via-indigo-200 to-purple-300 max-w-3xl mx-auto leading-tight">
-          29 visual languages. <br className="hidden sm:inline" />
+          {stylesCount} visual languages. <br className="hidden sm:inline" />
           One interactive design laboratory.
         </p>
 
@@ -47,16 +47,16 @@ export const Hero = ({ onExploreClick, stylesCount = 29 }) => {
             className="px-5 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 font-medium text-sm sm:text-base hover:text-white transition flex items-center gap-2 cursor-pointer"
           >
             <IconLayers className="w-4 h-4 text-slate-400" />
-            <span>Browse Full Index (29)</span>
+            <span>Browse Full Index ({stylesCount})</span>
           </button>
         </div>
 
         {/* Key Comparative Pillars */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-8 border-t border-white/10 text-left">
           <div className="p-4 rounded-xl bg-white/2 border border-white/5">
-            <div className="text-2xl font-bold text-white font-mono">29</div>
+            <div className="text-2xl font-bold text-white font-mono">{stylesCount}</div>
             <div className="text-xs text-slate-400 mt-1 uppercase tracking-wider font-semibold">Visual Systems</div>
-            <div className="text-[11px] text-slate-400 mt-1">From Skeuomorphic to Cyberpunk</div>
+            <div className="text-[11px] text-slate-400 mt-1">From Glassmorphism to Paper UI</div>
           </div>
           <div className="p-4 rounded-xl bg-white/2 border border-white/5">
             <div className="text-2xl font-bold text-indigo-400 font-mono">100%</div>

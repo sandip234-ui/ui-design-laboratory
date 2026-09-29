@@ -1,8 +1,22 @@
 import React from 'react';
 import { IconX, IconSparkles, IconLayers, IconCheck } from './Icons';
 
-export const AboutModal = ({ isOpen, onClose }) => {
+export const AboutModal = ({ isOpen, onClose, styles = [] }) => {
   if (!isOpen) return null;
+
+  const count = styles.length || 51;
+
+  const categories = [
+    { title: 'Material Aesthetics', desc: 'Glassmorphism, Claymorphism, Neumorphism, Skeuomorphism, Paper UI, Frosted UI' },
+    { title: 'Typography & Editorial', desc: 'Luxury Typography, Editorial UI, Swiss Style, Brutalism, Neobrutalism' },
+    { title: 'Layout Systems', desc: 'Bento UI, Flat Design, Material Design, Fluent Design, Apple Minimalism' },
+    { title: 'Retro & Digital Nostalgia', desc: 'Retro Pixel, Y2K Cyber-Pop, Synthwave, Vaporwave, Pixel Art' },
+    { title: 'Futuristic & Sci-Fi', desc: 'Cybercore, Cyberpunk UI, Futuristic HUD, Holographic UI, Terminal UI' },
+    { title: 'Historical Movements', desc: 'Art Deco, Bauhaus, Victorian Design' },
+    { title: 'Cultural Aesthetics', desc: 'Wabi-Sabi, Bohemian, Cottagecore, Kawaii UI, Scrapbook' },
+    { title: 'Organic & Environmental', desc: 'Organic UI, Organic Minimalism, Solarpunk, Aurora UI' },
+    { title: 'Experimental Interfaces', desc: 'Liquid UI, Surrealism, Maximalism, Ethereal, Conceptual Sketch, Motion UI, Gamified UI' },
+  ];
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
@@ -10,7 +24,7 @@ export const AboutModal = ({ isOpen, onClose }) => {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition"
+          className="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition cursor-pointer"
         >
           <IconX className="w-5 h-5" />
         </button>
@@ -22,58 +36,35 @@ export const AboutModal = ({ isOpen, onClose }) => {
         </div>
 
         <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
-          The 29 Visual Languages of Digital Interface Design
+          The {count} Visual Languages of Digital Interface Design
         </h3>
 
         <div className="mt-4 space-y-4 text-sm text-slate-300 leading-relaxed">
           <p>
-            Welcome to <strong className="text-white">UI//LAB</strong>. This interactive installation functions as a design laboratory and museum dedicated to the evolution of visual human-computer interfaces.
+            Welcome to <strong className="text-white">UI//LAB</strong>. This interactive installation functions as a design laboratory and living museum dedicated to the evolution, ergonomics, and aesthetic philosophy of human-computer interfaces.
           </p>
           <p>
-            Rather than homogenizing an interface into one generic modern template, this showcase demonstrates how fundamental UI primitives—metric cards, navigation items, toggles, graphs, and action feeds—undergo radical psychological and aesthetic transformations when subjected to distinct design paradigms.
+            Rather than homogenizing an interface into one generic template, this showcase demonstrates how fundamental UI primitives—metric cards, navigation items, toggles, graphs, and action feeds—undergo radical psychological and aesthetic transformations when subjected to distinct design paradigms.
           </p>
 
-          <div className="p-4 rounded-xl bg-white/3 border border-white/10 space-y-2">
+          <div className="p-4 rounded-xl bg-white/3 border border-white/10 space-y-3">
             <h4 className="text-xs font-mono uppercase text-indigo-300 font-bold tracking-wider">
-              The 29 Curated Movements
+              {count} Movements Across 9 Design Categories
             </h4>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-mono text-slate-400 pt-1">
-              <div>• Glassmorphism</div>
-              <div>• Claymorphism</div>
-              <div>• Neumorphism</div>
-              <div>• Skeuomorphism</div>
-              <div>• Brutalism</div>
-              <div>• Neobrutalism</div>
-              <div>• Y2K Cyber-Pop</div>
-              <div>• Retro Pixel UI</div>
-              <div>• Gradient UI</div>
-              <div>• Dark UI</div>
-              <div>• Aurora UI</div>
-              <div>• Bento UI</div>
-              <div>• Frosted UI</div>
-              <div>• Motion UI</div>
-              <div>• Organic UI</div>
-              <div>• Swiss Style</div>
-              <div>• Editorial UI</div>
-              <div>• Industrial UI</div>
-              <div>• Terminal UI</div>
-              <div>• Cyberpunk UI</div>
-              <div>• Futuristic HUD</div>
-              <div>• Gamified UI</div>
-              <div>• Memphis Design</div>
-              <div>• Frutiger Aero</div>
-              <div>• Apple Minimalism</div>
-              <div>• Flat Design</div>
-              <div>• Material Design</div>
-              <div>• Fluent Design</div>
-              <div>• Organic Minimalism</div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pt-1">
+              {categories.map((c) => (
+                <div key={c.title} className="p-2.5 rounded-lg bg-white/2 border border-white/5">
+                  <span className="text-indigo-300 font-semibold font-mono text-[11px] block mb-0.5">{c.title}</span>
+                  <span className="text-slate-400 text-[11px] leading-tight block">{c.desc}</span>
+                </div>
+              ))}
             </div>
           </div>
 
           <div className="pt-2">
             <h4 className="text-white font-semibold text-sm mb-1">Architecture & Engineering Integrity</h4>
             <p className="text-xs text-slate-400">
-              Each of the 29 sections exists in its own isolated React component, utilizing customized typography, bespoke shadow physics, and realistic fictional dashboard data. Built with React 19 and Tailwind CSS.
+              Each of the {count} design systems exists in its own isolated React component, complete with structured educational context (Formula, Visual DNA, Best For, and Distinguishing Characteristics), customized typography, bespoke shadow physics, and realistic fictional dashboard data. Built with React 19, Tailwind CSS, and Vite.
             </p>
           </div>
         </div>

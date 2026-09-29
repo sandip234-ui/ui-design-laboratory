@@ -71,6 +71,50 @@ export const StyleIndex = ({ styles, onSelectStyle }) => {
         return 'bg-slate-900/60 backdrop-blur-md border border-slate-700/50 rounded-xl';
       case 'organic-minimalism':
         return 'bg-[#211f1d] border border-stone-700/40 rounded-3xl';
+      case 'cybercore':
+        return 'bg-[#020b14] border border-cyan-500/50 text-cyan-400 font-mono shadow-[0_0_12px_rgba(6,182,212,0.15)]';
+      case 'scrapbook':
+        return 'bg-[#f7f3e8] text-stone-800 border-2 border-stone-300 rounded-lg shadow-md -rotate-1';
+      case 'surrealism':
+        return 'bg-gradient-to-br from-[#12072b] via-[#2a0845] to-[#0b192c] border border-fuchsia-500/40 rounded-3xl';
+      case 'synthwave':
+        return 'bg-[#120024] border-2 border-pink-500/60 shadow-[0_0_15px_rgba(236,72,153,0.3)]';
+      case 'maximalism':
+        return 'bg-[#ffe600] text-black border-4 border-black font-extrabold shadow-[4px_4px_0px_#ff0055]';
+      case 'luxury-typography':
+        return 'bg-[#080808] border border-amber-400/40 text-stone-200 font-serif';
+      case 'conceptual-sketch':
+        return 'bg-[#fcfaf2] text-stone-800 border-2 border-dashed border-stone-500 rounded font-mono';
+      case 'ethereal':
+        return 'bg-gradient-to-tr from-indigo-900/30 via-purple-800/20 to-pink-500/20 backdrop-blur-xl border border-white/30 rounded-3xl';
+      case 'bohemian':
+        return 'bg-[#2b1e16] border border-amber-700/50 rounded-2xl text-amber-200';
+      case 'victorian':
+        return 'bg-[#100707] border-2 border-amber-600/60 text-amber-100 rounded-none shadow-xl';
+      case 'wabi-sabi':
+        return 'bg-[#211f1c] border border-stone-700/30 text-stone-300 rounded-xl';
+      case 'pixel-art':
+        return 'bg-[#0e1626] border-4 border-indigo-400/80 font-mono';
+      case 'art-deco':
+        return 'bg-[#05070c] border-2 border-amber-400/70 text-amber-100 shadow-[0_0_15px_rgba(251,191,36,0.15)]';
+      case 'bauhaus':
+        return 'bg-white text-black border-4 border-red-600 rounded-none';
+      case 'vaporwave':
+        return 'bg-gradient-to-br from-[#1a0033] via-[#ff71ce]/20 to-[#01cdfe]/20 border border-[#01cdfe]/50';
+      case 'solarpunk':
+        return 'bg-[#081f14] border-2 border-emerald-500/50 text-emerald-200 rounded-2xl';
+      case 'cottagecore':
+        return 'bg-[#faf5ee] text-amber-950 border-2 border-emerald-800/20 rounded-2xl';
+      case 'kawaii-ui':
+        return 'bg-pink-900/30 border-2 border-pink-300/60 rounded-3xl shadow-[0_4px_16px_rgba(244,114,182,0.25)]';
+      case 'holographic-ui':
+        return 'bg-[#0c0d18] border border-cyan-400/60 shadow-[0_0_20px_rgba(56,189,248,0.25)]';
+      case 'monochromatic-ui':
+        return 'bg-blue-950/60 border border-blue-500/40 text-blue-200';
+      case 'liquid-ui':
+        return 'bg-gradient-to-tr from-indigo-900/50 via-purple-900/40 to-pink-900/40 border border-pink-500/30 rounded-[28px]';
+      case 'paper-ui':
+        return 'bg-[#f8f9fa] text-slate-800 border border-slate-300 shadow-md';
       default:
         return 'bg-white/[0.03] border border-white/10';
     }
@@ -87,7 +131,7 @@ export const StyleIndex = ({ styles, onSelectStyle }) => {
               <span>Visual Gallery Index</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Directory of 29 Design Systems
+              Directory of {styles.length} Design Systems
             </h2>
             <p className="mt-2 text-sm sm:text-base text-slate-400 max-w-2xl">
               Preview the aesthetics below. Click any card to jump immediately into its interactive laboratory dashboard.
@@ -112,13 +156,13 @@ export const StyleIndex = ({ styles, onSelectStyle }) => {
           </div>
         </div>
 
-        {/* 29 Style Preview Cards Grid */}
+        {/* 51 Style Preview Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {filteredStyles.map((s) => {
             const isNeobrutalist = s.id === 'neobrutalism';
             const isSwiss = s.id === 'swiss-style';
             const isFlat = s.id === 'flat-design';
-            const isLightBg = isNeobrutalist || isSwiss;
+            const isLightBg = isNeobrutalist || isSwiss || s.id === 'scrapbook' || s.id === 'conceptual-sketch' || s.id === 'bauhaus' || s.id === 'cottagecore' || s.id === 'paper-ui' || s.id === 'maximalism';
 
             return (
               <div

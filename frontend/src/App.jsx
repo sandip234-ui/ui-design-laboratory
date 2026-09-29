@@ -7,7 +7,7 @@ import { FloatingNavigator } from './components/FloatingNavigator';
 import { AboutModal } from './components/AboutModal';
 import { BackToTop } from './components/BackToTop';
 
-// All 29 Style Components
+// All 51 Style Components
 import { Glassmorphism } from './styles/Glassmorphism';
 import { Claymorphism } from './styles/Claymorphism';
 import { Neumorphism } from './styles/Neumorphism';
@@ -37,6 +37,28 @@ import { FlatDesign } from './styles/FlatDesign';
 import { MaterialDesign } from './styles/MaterialDesign';
 import { FluentDesign } from './styles/FluentDesign';
 import { OrganicMinimalism } from './styles/OrganicMinimalism';
+import { Cybercore } from './styles/Cybercore';
+import { Scrapbook } from './styles/Scrapbook';
+import { Surrealism } from './styles/Surrealism';
+import { Synthwave } from './styles/Synthwave';
+import { Maximalism } from './styles/Maximalism';
+import { LuxuryTypography } from './styles/LuxuryTypography';
+import { ConceptualSketch } from './styles/ConceptualSketch';
+import { Ethereal } from './styles/Ethereal';
+import { Bohemian } from './styles/Bohemian';
+import { Victorian } from './styles/Victorian';
+import { WabiSabi } from './styles/WabiSabi';
+import { PixelArt } from './styles/PixelArt';
+import { ArtDeco } from './styles/ArtDeco';
+import { Bauhaus } from './styles/Bauhaus';
+import { Vaporwave } from './styles/Vaporwave';
+import { Solarpunk } from './styles/Solarpunk';
+import { Cottagecore } from './styles/Cottagecore';
+import { KawaiiUI } from './styles/KawaiiUI';
+import { HolographicUI } from './styles/HolographicUI';
+import { MonochromaticUI } from './styles/MonochromaticUI';
+import { LiquidUI } from './styles/LiquidUI';
+import { PaperUI } from './styles/PaperUI';
 
 const COMPONENT_MAP = {
   'glassmorphism': Glassmorphism,
@@ -68,6 +90,28 @@ const COMPONENT_MAP = {
   'material-design': MaterialDesign,
   'fluent-design': FluentDesign,
   'organic-minimalism': OrganicMinimalism,
+  'cybercore': Cybercore,
+  'scrapbook': Scrapbook,
+  'surrealism': Surrealism,
+  'synthwave': Synthwave,
+  'maximalism': Maximalism,
+  'luxury-typography': LuxuryTypography,
+  'conceptual-sketch': ConceptualSketch,
+  'ethereal': Ethereal,
+  'bohemian': Bohemian,
+  'victorian': Victorian,
+  'wabi-sabi': WabiSabi,
+  'pixel-art': PixelArt,
+  'art-deco': ArtDeco,
+  'bauhaus': Bauhaus,
+  'vaporwave': Vaporwave,
+  'solarpunk': Solarpunk,
+  'cottagecore': Cottagecore,
+  'kawaii-ui': KawaiiUI,
+  'holographic-ui': HolographicUI,
+  'monochromatic-ui': MonochromaticUI,
+  'liquid-ui': LiquidUI,
+  'paper-ui': PaperUI,
 };
 
 export default function App() {
@@ -149,7 +193,7 @@ export default function App() {
         onSelectStyle={handleNavigate}
       />
 
-      {/* 4. Sequential 29 Bespoke UI Style Dashboards */}
+      {/* 4. Sequential 51 Bespoke UI Style Dashboards */}
       <main className="flex-1">
         {STYLES.map((style, index) => {
           const Component = COMPONENT_MAP[style.id];
@@ -184,7 +228,7 @@ export default function App() {
               <span className="font-extrabold tracking-tight text-white text-lg">UI//LAB</span>
             </div>
             <p className="text-xs text-slate-400 mt-2 max-w-md leading-relaxed">
-              An interactive visual laboratory exploring 29 distinct interface design movements. Dedicated to the craft of digital human-computer typography, depth, and spatial ergonomics.
+              An interactive visual laboratory exploring {STYLES.length} distinct interface design movements. Dedicated to the craft of digital human-computer typography, depth, and spatial ergonomics.
             </p>
           </div>
 
@@ -199,7 +243,7 @@ export default function App() {
               onClick={() => handleNavigate('style-index')}
               className="hover:text-white transition cursor-pointer"
             >
-              All 29 Systems Index
+              All {STYLES.length} Systems Index
             </button>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -211,7 +255,7 @@ export default function App() {
         </div>
 
         <div className="max-w-7xl mx-auto mt-10 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500 font-mono">
-          <span>29 BESPOKE JSX DASHBOARDS • 100% TAILWIND CSS • REACT 19</span>
+          <span>{STYLES.length} BESPOKE JSX DASHBOARDS • 100% TAILWIND CSS • REACT 19</span>
           <span>THE UI STYLE LAB © 2026</span>
         </div>
       </footer>
@@ -230,6 +274,7 @@ export default function App() {
       <AboutModal
         isOpen={aboutModalOpen}
         onClose={() => setAboutModalOpen(false)}
+        styles={STYLES}
       />
     </div>
   );

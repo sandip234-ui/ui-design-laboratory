@@ -41,7 +41,7 @@ export const FloatingNavigator = ({ styles, activeStyleId, onNavigate }) => {
           <div className="flex items-center justify-between px-2 py-1.5 border-b border-white/10 mb-1">
             <span className="text-[11px] font-mono uppercase tracking-wider text-slate-300 font-semibold flex items-center gap-1.5">
               <IconLayers className="w-3.5 h-3.5 text-indigo-400" />
-              <span>Navigator (29)</span>
+              <span>Navigator ({styles.length})</span>
             </span>
             <button
               onClick={() => setCollapsed(true)}
@@ -97,7 +97,7 @@ export const FloatingNavigator = ({ styles, activeStyleId, onNavigate }) => {
           {collapsed ? 'Style Quick Jump' : 'Close Menu'}
         </span>
         <span className="text-[10px] font-mono bg-white/10 px-1.5 py-0.5 rounded-full text-slate-300">
-          29
+          {styles.length}
         </span>
       </button>
     </aside>

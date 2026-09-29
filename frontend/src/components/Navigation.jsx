@@ -21,12 +21,24 @@ export const Navigation = ({ styles, activeStyleId, onNavigate, onOpenAbout }) =
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const filteredStyles = styles.filter(s => 
-    s.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    s.shortDescription.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    s.characteristics.some(c => c.toLowerCase().includes(searchQuery.toLowerCase())) ||
-    s.number.includes(searchQuery)
-  );
+  const q = searchQuery.toLowerCase().trim();
+  const filteredStyles = styles.filter(s => {
+    if (!q) return true;
+    return (
+      s.name.toLowerCase().includes(q) ||
+      (s.formula && s.formula.toLowerCase().includes(q)) ||
+      (s.shortDescription && s.shortDescription.toLowerCase().includes(q)) ||
+      (s.explanation && s.explanation.toLowerCase().includes(q)) ||
+      (s.whatIsIt && s.whatIsIt.toLowerCase().includes(q)) ||
+      (s.distinguishedBy && s.distinguishedBy.toLowerCase().includes(q)) ||
+      (s.category && s.category.toLowerCase().includes(q)) ||
+      (s.era && s.era.toLowerCase().includes(q)) ||
+      (s.characteristics && s.characteristics.some(c => c.toLowerCase().includes(q))) ||
+      (s.visualDNA && s.visualDNA.some(v => v.toLowerCase().includes(q))) ||
+      (s.bestFor && s.bestFor.some(b => b.toLowerCase().includes(q))) ||
+      s.number.includes(q)
+    );
+  });
 
   return (
     <>
@@ -71,7 +83,7 @@ export const Navigation = ({ styles, activeStyleId, onNavigate, onOpenAbout }) =
               >
                 <span>Styles</span>
                 <span className="text-[11px] font-mono bg-white/10 text-slate-300 px-1.5 py-0.5 rounded-full">
-                  29
+                  {styles.length}
                 </span>
               </button>
               <button
@@ -100,7 +112,7 @@ export const Navigation = ({ styles, activeStyleId, onNavigate, onOpenAbout }) =
             {/* Total Styles Badge */}
             <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-medium">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>29 DESIGN SYSTEMS</span>
+              <span>{styles.length} DESIGN SYSTEMS</span>
             </div>
 
             {/* Mobile Menu Trigger */}
@@ -141,7 +153,7 @@ export const Navigation = ({ styles, activeStyleId, onNavigate, onOpenAbout }) =
               }}
               className="block w-full text-left py-2 text-sm font-medium text-slate-200 hover:text-white"
             >
-              Browse 29 Styles
+              Browse {styles.length} Styles
             </button>
             <button
               onClick={() => {
@@ -165,7 +177,7 @@ export const Navigation = ({ styles, activeStyleId, onNavigate, onOpenAbout }) =
               <input
                 type="text"
                 autoFocus
-                placeholder="Search 29 styles by name, era, or characteristic..."
+                placeholder={`Search ${styles.length} styles by name, visual DNA, formula, or era...`}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full bg-transparent text-white placeholder-slate-400 text-sm focus:outline-none"
@@ -202,7 +214,7 @@ export const Navigation = ({ styles, activeStyleId, onNavigate, onOpenAbout }) =
                           </span>
                         </div>
                         <p className="text-xs text-slate-400 line-clamp-1 mt-0.5">
-                          {s.shortDescription}
+                          {s.formula ? `${s.formula} — ` : ''}{s.shortDescription}
                         </p>
                       </div>
                     </div>
@@ -219,7 +231,7 @@ export const Navigation = ({ styles, activeStyleId, onNavigate, onOpenAbout }) =
             </div>
 
             <div className="p-3 bg-black/40 border-t border-white/5 flex items-center justify-between text-xs text-slate-500 font-mono">
-              <span>Showing {filteredStyles.length} of 29 visual languages</span>
+              <span>Showing {filteredStyles.length} of {styles.length} visual languages</span>
               <span>ESC to close</span>
             </div>
           </div>
